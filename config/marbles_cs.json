@@ -2,11 +2,13 @@
 	"cred_filename": "blockchain_cs.json",
 	"use_events": true,
 	"keep_alive_secs": 120,
-	"company": "United Marbles",
+	"company": "Talent Exchange",
 	"usernames": [
-		"amy",
-		"alice",
-		"ava"
+        "talent-registry",
+        "army",
+        "company-a",
+        "university-a",
+        "navy"
 	],
 	"port": 32001
 }

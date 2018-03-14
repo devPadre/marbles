@@ -1,8 +1,8 @@
 {
-	"name": "Place Holder Network Name",
+	"name": "Talent Exchange",
 	"x-networkId": "not-important",
 	"x-type": "hlfv1",
-	"description": "Connection Profile for an IBM Blockchain Network",
+	"description": "Connection Profile for a Talent Exchange Blockchain Network",
 	"version": "1.0.0",
 	"client": {
 		"organization": "PeerOrg1"

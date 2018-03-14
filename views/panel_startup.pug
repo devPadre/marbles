@@ -9,7 +9,7 @@
 			span Starting this application requires a few steps. 
 			br
 			br
-			strong Complete each step to fully setup marbles. 
+			strong Complete each step to fully setup the Talent Exchange. 
 			br
 			br
 		button#startSteps Start
@@ -112,7 +112,7 @@
 			.showMoreDetails Why is this important?
 			.moreDetails
 				span If successful, the application will download an enrollment certificate. 
-				span The certificate will be used to authenticate future marbles transactions. 
+				span The certificate will be used to authenticate future talent transactions. 
 				span Without it we cannot create transactions. 
 
 		//----------------- Step 3 Content [Find Chaincode]
@@ -138,7 +138,7 @@
 				p(style="font-weight: 200;") 
 					span If this is your first time using the application then&nbsp;
 					a(href="https://github.com/IBM-Blockchain/marbles/tree/v4.0#3-install-and-instantiate-chaincode" target="_blank" style="color:#fff;") install/instantiate
-					span &nbsp;marbles chaincode
+					span &nbsp;talent chaincode
 
 			.startupWrap
 				.settingsExpand 
@@ -151,14 +151,14 @@
 						span.backgroundMe discovery_url
 					input(type="text" placeholder="Orderer ex: 192.168.99.100:5151" name="ordererUrl" value=bag.creds.orderer).longer
 					span.fa.fa-question-circle.settingstooltip
-						span.tooltiptext This is the main gRPC url to reach your orderer. It should include the protocol and port. You will be sending marbles transactions here for ordering.
+						span.tooltiptext This is the main gRPC url to reach your orderer. It should include the protocol and port. You will be sending talent marker transactions here for ordering.
 					br
 					.stepInputLegend
 						span Peer's 
 						span.backgroundMe discovery_url
 					input(type="text" placeholder="Peer ex: 192.168.99.100:7051" name="peerUrl" value=bag.creds.peer).longer
 					span.fa.fa-question-circle.settingstooltip
-						span.tooltiptext This is the main gRPC url to reach your peer.  It should include the protocol and port. You will be sending marble transactions here for endorsement.
+						span.tooltiptext This is the main gRPC url to reach your peer.  It should include the protocol and port. You will be sending talent marker transactions here for endorsement.
 					br
 					.stepInputLegend
 						span.backgroundMe channel 
@@ -170,7 +170,7 @@
 						span.backgroundMe chaincode_id 
 					input(type="text" placeholder="Chaincode ID" name="chaincodeId" value=bag.creds.chaincode_id).longer
 					span.fa.fa-question-circle.settingstooltip
-						span.tooltiptext This is the name of your instantiated chaincode. ex: marbles.
+						span.tooltiptext This is the name of your instantiated chaincode. ex: talent markers.
 					br
 					.stepInputLegend
 						span.backgroundMe chaincode_version 
@@ -191,8 +191,8 @@
 				br
 				br
 				span The chaincode itself is code written in GoLang. 
-				span It defines the assets (marbles) and the rules around marble transfers. 
-				span Our chaincode transactions will create and modify marbles, marble owners, and marble companies. 
+				span It defines the assets (talent markers) and the rules around talent transfers. 
+				span Our chaincode transactions will create and modify talent markers, talent owners, and companies. 
 				span We cannot use this application until the chaincode is instantiated on a channel. 
 				
 		//----------------- Step 4 Content [Register Marble Owners]
@@ -202,11 +202,11 @@
 				span &nbsp;&nbsp;Create Assets
 			.stepDescription 
 				span Almost there! 
-				span As a marbles trading company you may bring new marble owners onboard. 
-				span These marble owners represent your user base. 
+				span As a talent exchange company you may bring new talent owners onboard. 
+				span These talent owners represent your jobs, hiring managers, departments or subsidiaries. 
 				br
 				br
-				span This step will create the marble owners and 3 marbles per owner. 
+				span This step will create the talent owners and 3 talent markers per owner. 
 
 			include ./template/loading.pug
 
@@ -219,10 +219,10 @@
 						span.tooltiptext Edit the config file and restart the application to change your company name.
 					br
 					.stepInputLegend
-						span Marble Owners 
+						span Talent Owners 
 					input(type="text" placeholder="bob, bill, amy" name="marbleOwners" value=bag.creds.marble_owners).longer
 					span.fa.fa-question-circle.settingstooltip
-						span.tooltiptext Enter the names of the marble owners you want created. Separate them by commas.
+						span.tooltiptext Enter the names of the talent owners you want created. Separate them by commas.
 					
 			.successStep Step 4 Complete
 			button.nextStep(nextstepid="step5" style="display: inline-block") Skip Step
@@ -232,7 +232,7 @@
 		#step5.stepWrap.hidden.success
 			span.fa.fa-smile-o.fa-3x
 			.stepDescription(style="text-align:center")
-				span Your marbles application is ready to use!
+				span Your talent exchange application is ready to use!
 				br
 				br
 			

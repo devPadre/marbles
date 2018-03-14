@@ -2,7 +2,7 @@
 	"name": "Container Service Network",
 	"x-networkId": "not-important",
 	"x-type": "hlfv1",
-	"description": "Connection Profile for an IBM Blockchain Network on the container service",
+	"description": "Connection Profile for a Talent Blockchain Network on the container service",
 	"version": "1.0.0",
 	"client": {
 		"organization": "Org1MSP"
