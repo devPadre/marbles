@@ -1,5 +1,5 @@
 {
-	"name": "Talent Exchange",
+	"name": "Veteran Talent Exchange",
 	"x-networkId": "not-important",
 	"x-type": "hlfv1",
 	"description": "Connection Profile for a Talent Exchange Blockchain Network",
@@ -43,7 +43,7 @@
 	},
 	"orderers": {
 		"fabric-orderer-12297b": {
-			"url": "grpcs://fft-zbc01b.4.secure.blockchain.ibm.com:10000",
+			"url": "grpcs://35.227.118.0:10000",
 			"grpcOptions": {
 				"ssl-target-name-override": null,
 				"grpc.http2.keepalive_time": 300,
@@ -56,7 +56,7 @@
 			}
 		},
 		"fabric-orderer-12297d": {
-			"url": "grpcs://fft-zbc01d.4.secure.blockchain.ibm.com:10001",
+			"url": "grpcs://35.227.118.0:10001",
 			"grpcOptions": {
 				"ssl-target-name-override": null,
 				"grpc.http2.keepalive_time": 300,
@@ -69,7 +69,7 @@
 			}
 		},
 		"fabric-orderer-12297e": {
-			"url": "grpcs://fft-zbc01e.4.secure.blockchain.ibm.com:10002",
+			"url": "grpcs://35.227.118.0:10002",
 			"grpcOptions": {
 				"ssl-target-name-override": null,
 				"grpc.http2.keepalive_time": 300,
@@ -84,8 +84,8 @@
 	},
 	"peers": {
 		"fabric-peer-org1-14888a": {
-			"url": "grpcs://fft-zbc01a.4.secure.blockchain.ibm.com:10003",
-			"eventUrl": "grpcs://fft-zbc01a.4.secure.blockchain.ibm.com:10004",
+			"url": "grpcs://35.227.118.0:10003",
+			"eventUrl": "grpcs://35.227.118.0:10004",
 			"grpcOptions": {
 				"ssl-target-name-override": null,
 				"grpc.http2.keepalive_time": 300,
@@ -98,8 +98,8 @@
 			}
 		},
 		"fabric-peer-org1-30702a": {
-			"url": "grpcs://fft-zbc01a.4.secure.blockchain.ibm.com:10005",
-			"eventUrl": "grpcs://fft-zbc01a.4.secure.blockchain.ibm.com:10006",
+			"url": "grpcs://35.227.118.0:10005",
+			"eventUrl": "grpcs://35.227.118.0:10006",
 			"grpcOptions": {
 				"ssl-target-name-override": null,
 				"grpc.http2.keepalive_time": 300,
@@ -114,7 +114,7 @@
 	},
 	"certificateAuthorities": {
 		"fabric-ca-16504a": {
-			"url": "https://fft-zbc01a.4.secure.blockchain.ibm.com:10007",
+			"url": "https://35.227.118.0:10007",
 			"httpOptions": {
 				"verify": true
 			},
@@ -130,7 +130,7 @@
 			"caName": "PeerOrg1CA"
 		},
 		"fabric-ca-16504c": {
-			"url": "https://fft-zbc01c.4.secure.blockchain.ibm.com:10008",
+			"url": "https://35.227.118.0:10008",
 			"httpOptions": {
 				"verify": true
 			},

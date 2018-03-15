@@ -1,5 +1,5 @@
 {
-	"name": "Docker Compose Network",
+	"name": "Veteran Talent Exchange",
 	"x-networkId": "not-important",
 	"x-type": "hlfv1",
 	"description": "Connection Profile for an Hyperledger Fabric network on a local machine",
@@ -48,18 +48,18 @@
 	},
 	"orderers": {
 		"fabric-orderer": {
-			"url": "grpc://localhost:7050"
+			"url": "grpc://35.227.118.0:7050"
 		}
 	},
 	"peers": {
 		"fabric-peer-org1": {
-			"url": "grpc://localhost:7051",
-			"eventUrl": "grpc://localhost:7053"
+			"url": "grpc://35.227.118.0:7051",
+			"eventUrl": "grpc://35.227.118.0:7053"
 		}
 	},
 	"certificateAuthorities": {
 		"fabric-ca": {
-			"url": "http://localhost:7054",
+			"url": "http://35.227.118.0:7054",
 			"httpOptions": {
 				"verify": true
 			},
