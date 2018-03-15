@@ -48,18 +48,18 @@
 	},
 	"orderers": {
 		"fabric-orderer": {
-			"url": "grpc://10.142.0.2:7050"
+			"url": "grpc://localhost:7050"
 		}
 	},
 	"peers": {
 		"fabric-peer-org1": {
-			"url": "grpc://10.142.0.2:7051",
-			"eventUrl": "grpc://10.142.0.2:7053"
+			"url": "grpc://localhost:7051",
+			"eventUrl": "grpc://localhost:7053"
 		}
 	},
 	"certificateAuthorities": {
 		"fabric-ca": {
-			"url": "http://10.142.0.2:7054",
+			"url": "http://localhost:7054",
 			"httpOptions": {
 				"verify": true
 			},
