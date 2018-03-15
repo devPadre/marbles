@@ -1,50 +1,38 @@
 *Read this in other languages: [中国](README-cn.md).*
-# Marbles Demo
+# Talent-Exchange Demo
 
-## About Marbles
+## About Talent-Exchange
 - The underlying network for this application is the [Hyperledger Fabric](https://github.com/hyperledger/fabric/tree/master/docs), a Linux Foundation project.  You may want to review these instructions to understand a bit about the Hyperledger Fabric.
 - **This demo is to aid a developer learn the basics of chaincode and app development with a Fabric network.**
-- This is a `very simple` asset transfer demonstration. Multiple users can create and transfer marbles with each other.
+- This is a `very simple` asset transfer demonstration. Multiple users can create and transfer Talent-Exchange with each other.
 
-	![](/doc_images/marbles-peek.gif)
+	![](/doc_images/Talent-Exchange-peek.gif)
 
 ***
 
 ##### Versions and Supported Platforms
-Please note there are multiple version of marbles. 
-One marbles branch for each major Hyperledger Fabric release. 
-Pick a version of marbles that is compatible with your version of Fabric. 
-If you don't have any version of Fabric, then pick the marbles version marked **latest**! 
+Please note there are multiple version of Talent-Exchange. 
+One Talent-Exchange branch for each major Hyperledger Fabric release. 
+Pick a version of Talent-Exchange that is compatible with your version of Fabric. 
+If you don't have any version of Fabric, then pick the Talent-Exchange version marked **latest**! 
 
-- Marbles - Branch v4.0 **(Latest)** (You are viewing this branch!)
+- Talent-Exchange - Branch v4.0 **(Latest)** (You are viewing this branch!)
 	- Works with Hyperledger Fabric  `v1.0.1`, `v1.0.0` and `v1.0.0-rc1`
-	- Works with the IBM Blockchain Bluemix Service - Plan **IBM Blockchain Platform - Enterprise**
 
-- [Marbles - Branch v3.0](https://github.com/ibm-blockchain/marbles/tree/v3.0) **(Deprecated)**
-	- Works with Hyperledger Fabric `v1.0.0-alpha`
-	- No longer supported by the IBM Blockchain Bluemix service
-
-- [Marbles - Branch v2.0](https://github.com/ibm-blockchain/marbles/tree/v2.0) **(Deprecated)**
-	- Works with Hyperledger Fabric `v0.6.1-preview`
-	- Works with IBM Blockchain Bluemix Service - Plan **Starter** or **HSBN**
-
-- [Marbles - Branch v1.0](https://github.com/ibm-blockchain/marbles/tree/v1.0) **(Deprecated)**
-	- Works with Hyperledger Fabric `v0.5-developer-preview`
-	- No longer supported by the IBM Blockchain Bluemix service
 
 ***
 
 # Application Background
 
-Hold on to your hats everyone, this application is going to demonstrate transferring marbles between many marble owners leveraging Hyperledger Fabric.
+Hold on to your hats everyone, this application is going to demonstrate transferring Talent-Exchange between many talent marker owners leveraging Hyperledger Fabric.
 We are going to do this in Node.js and a bit of GoLang.
 The backend of this application will be the GoLang code running in our blockchain network.
 From here on out the GoLang code will be referred to as 'chaincode' or 'cc'.
-The chaincode itself will create a marble by storing it to the chaincode state.
+The chaincode itself will create a talent marker by storing it to the chaincode state.
 The chaincode itself can store data as a string in a key/value pair setup.
 Thus, we will stringify JSON objects to store more complex structures.
 
-Attributes of a marble:
+Attributes of a talent marker:
 
   1. id (unique string, will be used as key)
   2. color (string, css color names)
@@ -52,8 +40,8 @@ Attributes of a marble:
   4. owner (string)
 
 We are going to create a Web based UI that can set these values and store them in our blockchain.
-The marble gets created in the blockchain storage aka ledger as a key value pair.
-The `key` is the marble id, and the `value` is a JSON string containing the attributes of the marble (listed above).
+The talent marker gets created in the blockchain storage aka ledger as a key value pair.
+The `key` is the talent marker id, and the `value` is a JSON string containing the attributes of the talent marker (listed above).
 Interacting with the cc is done by using the gRPC protocol to a peer on the network.
 The details of the gRPC protocol are taken care of by an SDK called [Hyperledger Fabric Client](https://www.npmjs.com/package/fabric-client) SDK.
 Check the picture below for topology details.
@@ -62,11 +50,11 @@ Check the picture below for topology details.
 
 ![](/doc_images/comm_flow.png)
 
-1. The admin will interact with Marbles, our Node.js application, in their browser.
+1. The admin will interact with Talent-Exchange, our Node.js application, in their browser.
 1. This client side JS code will open a websocket to the backend Node.js application. The client JS will send messages to the backend when the admin interacts with the site.
-1. Reading or writing the ledger is known as a proposal. This proposal is built by Marbles (via the SDK) and then sent to a blockchain peer.
-1. The peer will communicate to its Marbles chaincode container. The chaincode will run/simulate the transaction. If there are no issues it will endorse the transaction and send it back to our Marbles application.
-1. Marbles (via the SDK) will then send the endorsed proposal to the ordering service.  The orderer will package many proposals from the whole network into a block.  Then it will broadcast the new block to peers in the network.
+1. Reading or writing the ledger is known as a proposal. This proposal is built by Talent-Exchange (via the SDK) and then sent to a blockchain peer.
+1. The peer will communicate to its Talent-Exchange chaincode container. The chaincode will run/simulate the transaction. If there are no issues it will endorse the transaction and send it back to our Talent-Exchange application.
+1. Talent-Exchange (via the SDK) will then send the endorsed proposal to the ordering service.  The orderer will package many proposals from the whole network into a block.  Then it will broadcast the new block to peers in the network.
 1. Finally the peer will validate the block and write it to its ledger. The transaction has now taken effect and any subsequent reads will reflect this change.
 
 ### Context Clues
@@ -76,19 +64,19 @@ This walk through will jump from one to another as we setup and explain each par
 It's important to identify which part is which.
 There are certain keywords and context clues to help you identify one from another.
 
-1. The Chaincode Part - This is GoLang code that runs on/with a peer on your blockchain network. Also, called `cc`. All marbles/blockchain interactions ultimately happen here. These files live in `/chaincode`.
+1. The Chaincode Part - This is GoLang code that runs on/with a peer on your blockchain network. Also, called `cc`. All Talent-Exchange/blockchain interactions ultimately happen here. These files live in `/chaincode`.
 1. The Client Side JS Part - This is JavaScript code running in the user's browser. User interface interaction happens here. These files live in `/public/js.`
-1. The Server Side JS Part - This is JavaScript code running our application's backend. ie `Node.js` code which is the heart of Marbles! Sometimes referred to as our `node` or `server` code. Functions as the glue between the marble admin and our blockchain. These files live in `/utils` and `/routes`.
+1. The Server Side JS Part - This is JavaScript code running our application's backend. ie `Node.js` code which is the heart of Talent-Exchange! Sometimes referred to as our `node` or `server` code. Functions as the glue between the talent marker admin and our blockchain. These files live in `/utils` and `/routes`.
 
 Remember these 3 parts are isolated from each other.
 They do not share variables nor functions.
 They will communicate via a networking protocol such as gRPC or WebSockets.
 ***
 
-# Marbles Setup
+# Talent-Exchange Setup
 
 I have good news and bad news. 
-The good news is marbles and the blockchain network can be setup for different configurations depending on your preference. 
+The good news is Talent-Exchange and the blockchain network can be setup for different configurations depending on your preference. 
 The bad news is this makes the instructions complicated. 
 **If you are new to Hyperledger Fabric and want the simplest setup then follow the :lollipop: emoji.** 
 Whenever there are options and you must choose your own adventure, I'll drop a :lollipop: emoji on the option that is the simplest. 
@@ -98,21 +86,21 @@ This is the option for you.
 
 Follow these environment setup [instructions](./docs/env_setup.md) to install **Git, Go** and **Node.js**.
 
-- When you have finished come back to this tutorial. Start the next section "Download Marbles" below.
+- When you have finished come back to this tutorial. Start the next section "Download Talent-Exchange" below.
 
-<a name="downloadmarbles"></a>
+<a name="downloadTalent-Exchange"></a>
 
-### 1. Download Marbles
-We need to download marbles to your local system. 
+### 1. Download Talent-Exchange
+We need to download Talent-Exchange to your local system. 
 Let’s do this with Git by cloning this repository. 
-You will need to do this step even if you plan on hosting marbles in Bluemix.
+You will need to do this step even if you plan on hosting Talent-Exchange in Bluemix.
 
 - Open a command prompt/terminal and browse to your desired working directory
 - Run the following command:
 
 	```
-	git clone https://github.com/IBM-Blockchain/marbles.git --depth 1
-	cd marbles
+	git clone https://github.com/IBM-Blockchain/Talent-Exchange.git --depth 1
+	cd Talent-Exchange
 	git checkout v4.0
 	```
 
@@ -133,8 +121,8 @@ Hello again. Now we need a blockchain network.
 
 ### 3. Install and Instantiate Chaincode
 
-OK, almost there! Now we need to get our marbles chaincode running. 
-Remember the chaincode is a vital component that ultimately creates our marbles transactions on the ledger. 
+OK, almost there! Now we need to get our Talent-Exchange chaincode running. 
+Remember the chaincode is a vital component that ultimately creates our Talent-Exchange transactions on the ledger. 
 It is GoLang code that needs to be installed on our peer, and then instantiated on a channel. 
 The code is already written for you! 
 We just need to get it running. 
@@ -145,65 +133,65 @@ Choose the **only** option that is relevant for your setup:
 - **Option 1:** Install and instantiate chaincode with your IBM Blockchain Service - [instructions](./docs/install_chaincode.md)
 - **Option 2:** :lollipop: Install and instantiate chaincode with the SDK locally - [instructions](./docs/install_chaincode_locally.md)
 
-<a name="hostmarbles"></a>
+<a name="hostTalent-Exchange"></a>
 
-### 4. Host Marbles
+### 4. Host Talent-Exchange
 
-Last but not least we need marbles running somewhere.
+Last but not least we need Talent-Exchange running somewhere.
 
 **Choose 1 option below:**
 
-- **Option 1:** Host marbles on Bluemix - [instructions](./docs/host_marbles_bluemix.md)
-- **Option 2:** :lollipop: Host marbles locally - [instructions](./docs/host_marbles_locally.md)
+- **Option 1:** Host Talent-Exchange on Bluemix - [instructions](./docs/host_Talent-Exchange_bluemix.md)
+- **Option 2:** :lollipop: Host Talent-Exchange locally - [instructions](./docs/host_Talent-Exchange_locally.md)
 
 ***
 
 <a name="use"></a>
 
-# Use Marbles
+# Use Talent-Exchange
 
-1. If you are at this step, you should have your environment setup, blockchain network created, marbles app and chaincode running. Right? If not look up for help (up the page, not literally upwards).
+1. If you are at this step, you should have your environment setup, blockchain network created, Talent-Exchange app and chaincode running. Right? If not look up for help (up the page, not literally upwards).
 1. Open up your favorite browser and browse to [http://localhost:3001](http://localhost:3001) or your Bluemix www route.
-    - If the site does not load, check your node console logs for the hostname/ip and port marbles is using.
+    - If the site does not load, check your node console logs for the hostname/ip and port Talent-Exchange is using.
 
-1. Finally we can test the application. Click the "+" icon on one of your users in the "United Marbles" section
+1. Finally we can test the application. Click the "+" icon on one of your users in the "United Talent-Exchange" section
 
-	![](/doc_images/use_marbles1.png)
+	![](/doc_images/use_Talent-Exchange1.png)
 
 1. Fill out all the fields, then click the "CREATE" button
-1. After a few seconds your new marble should have appeared.
+1. After a few seconds your new talent marker should have appeared.
     - If not refresh the page by hitting the refresh button in your browser, or by pressing F5
-1. Next let’s trade a marble.  Drag and drop a marble from one owner to another. Only trade it to owners within "United Marbles" if you have multiple marble companies. It should temporary disappear and then redraw the marble within its new owner. That means it worked!
+1. Next let’s trade a talent marker.  Drag and drop a talent marker from one owner to another. Only trade it to owners within "United Talent-Exchange" if you have multiple talent marker companies. It should temporary disappear and then redraw the talent marker within its new owner. That means it worked!
     - If not refresh the page
-1. Now let’s delete a marble by dragging and dropping it into the trash can. It should disappear after a few seconds.
+1. Now let’s delete a talent marker by dragging and dropping it into the trash can. It should disappear after a few seconds.
 
-	![](/doc_images/use_marbles2.png)
+	![](/doc_images/use_Talent-Exchange2.png)
 
 1. Refresh the page to double check that your actions "stuck".
-1. Use the search box to filter on marble owners or marble company names.  This is helpful when there are many companies/owners.
+1. Use the search box to filter on talent marker owners or talent marker company names.  This is helpful when there are many companies/owners.
     - The pin icon will prevent that user from being filtered out by the search box.
 1. Now lets turn on the special walk through. Click the "Settings" button near the top of the page.
 	- A dialog box will open.
 	- Click the "Enabled" button to enabled Story Mode
 	- Click the "x" in the top right to close the menu.
-	- Now pick another marble and drag it to another user.  You should see a breakdown of the transaction process. Hopefully it gives you a better idea of how Fabric works.
+	- Now pick another talent marker and drag it to another user.  You should see a breakdown of the transaction process. Hopefully it gives you a better idea of how Fabric works.
 	- Remember you can disable story mode when it becomes frustratingly repetitive and you are a cold husk of your former self.
-1. Congratulations you have a working marbles application :)!
+1. Congratulations you have a working Talent-Exchange application :)!
 
 
 # Blockchain Background
-Before we talk about how Marbles works let’s discuss the flow and topology of Hyperledger Fabric. 
+Before we talk about how Talent-Exchange works let’s discuss the flow and topology of Hyperledger Fabric. 
 Lets get some definitions out of the way first.
 
 ### Definitions:
 
-**Peer** - A peer is a member of the blockchain and is running Hyperledger Fabric. From marble's context, the peers are owned and operated by my marble company.
+**Peer** - A peer is a member of the blockchain and is running Hyperledger Fabric. From talent marker's context, the peers are owned and operated by my talent marker company.
 
-**CA** - The CA (Certificate Authority) is responsible for gatekeeping our blockchain network. It will provide transaction certificates for clients such as our marbles node.js application. 
+**CA** - The CA (Certificate Authority) is responsible for gatekeeping our blockchain network. It will provide transaction certificates for clients such as our Talent-Exchange node.js application. 
 
 **Orderer** - An orderer or ordering service is a member of the blockchain network whose main responsibility is to package transactions into blocks.
 
-**Users** - A user is an entity that is authorized to interact with the blockchain. In the Marbles context, this is our admin. The user can query and write to the ledger.
+**Users** - A user is an entity that is authorized to interact with the blockchain. In the Talent-Exchange context, this is our admin. The user can query and write to the ledger.
 
 **Blocks** - Blocks contain transactions and a hash to verify integrity.
 
@@ -213,20 +201,20 @@ Lets get some definitions out of the way first.
 
 **Chaincode** - Chaincode is Hyperledger Fabric speak for smart contracts. It defines the assets and all rules about assets.
 
-**Assets** - An asset is an entity that exists in the ledger. It’s a key value pair. In the context of marbles this is a marble, or a marble owner. 
+**Assets** - An asset is an entity that exists in the ledger. It’s a key value pair. In the context of Talent-Exchange this is a talent marker, or a talent marker owner. 
 
-Let’s look at the operations involved when creating a new marble.
+Let’s look at the operations involved when creating a new talent marker.
 
-1. The first thing that happens in marbles is registering our admin `user` with our network's `CA`. If successful, the `CA` will send Marbles enrollment certificates that the SDK will store for us in our local file system. 
-1. When the admin creates a new marble from the user interface the SDK will create an invocation transaction. 
-1. The create marble transaction gets built as a `proposal` to invoke the chaincode function `init_marble()`. 
-1. Marbles (via the SDK) will send this `proposal` to a `peer` for endorsement. 
-1. The `peer` will simulate the transaction by running the Go function `init_marble()` and record any changes it attempted to write to the `ledger`. 
-1. If the function returns successfully the `peer` will endorse the `proposal` and send it back to Marbles. Errors will also be sent back, but the `proposal` will not be endorsed.
-1. Marbles (via the SDK), will then send the endorsed `proposal` to the `orderer`. 
+1. The first thing that happens in Talent-Exchange is registering our admin `user` with our network's `CA`. If successful, the `CA` will send Talent-Exchange enrollment certificates that the SDK will store for us in our local file system. 
+1. When the admin creates a new talent marker from the user interface the SDK will create an invocation transaction. 
+1. The create talent marker transaction gets built as a `proposal` to invoke the chaincode function `init_talent marker()`. 
+1. Talent-Exchange (via the SDK) will send this `proposal` to a `peer` for endorsement. 
+1. The `peer` will simulate the transaction by running the Go function `init_talent marker()` and record any changes it attempted to write to the `ledger`. 
+1. If the function returns successfully the `peer` will endorse the `proposal` and send it back to Talent-Exchange. Errors will also be sent back, but the `proposal` will not be endorsed.
+1. Talent-Exchange (via the SDK), will then send the endorsed `proposal` to the `orderer`. 
 1. The `orderer` will organize a sequence of `proposals` from the whole network. It will check the sequence of transactions is valid by looking for transactions that conflict with each other. Any transactions that cannot be added to the block because of conflicts will be marked as errors. The `orderer` will broadcast the new block to the peers of the network.
 1. Our `peer` will receive the new block and validate it by looking at various signatures and hashes. It is then finally committed to the `peer's` `ledger`.
-1. At this point the new marble exists in our ledger and should soon exist in all peer's ledgers.
+1. At this point the new talent marker exists in our ledger and should soon exist in all peer's ledgers.
 
 
 # SDK Deeper Dive
@@ -296,14 +284,14 @@ Step 5. Next we set the Peer URLs. These are also not needed yet, but we are goi
 
 Step 6. At this point the SDK is fully configured and ready to interact with the blockchain.
 
-# Marbles Deeper Dive
-Hopefully you have successfully traded a marble or two between users. 
-Let’s look at how transferring a marble is done by starting at the chaincode.
+# Talent-Exchange Deeper Dive
+Hopefully you have successfully traded a talent marker or two between users. 
+Let’s look at how transferring a talent marker is done by starting at the chaincode.
 
-__/chaincode/marbles.go__
+__/chaincode/Talent-Exchange.go__
 
 ```go
-    type Marble struct {
+    type talent marker struct {
         ObjectType string        `json:"docType"`
         Id       string          `json:"id"`
         Color      string        `json:"color"`
@@ -334,10 +322,10 @@ __/chaincode/write_ledger.go__
             return shim.Error(err.Error())
         }
 
-        var marble_id = args[0]
+        var talent marker_id = args[0]
         var new_owner_id = args[1]
         var authed_by_company = args[2]
-        fmt.Println(marble_id + "->" + new_owner_id + " - |" + authed_by_company)
+        fmt.Println(talent marker_id + "->" + new_owner_id + " - |" + authed_by_company)
 
         // check if user already exists
         owner, err := get_owner(stub, new_owner_id)
@@ -345,25 +333,25 @@ __/chaincode/write_ledger.go__
             return shim.Error("This owner does not exist - " + new_owner_id)
         }
 
-        // get marble's current state
-        marbleAsBytes, err := stub.GetState(marble_id)
+        // get talent marker's current state
+        talent markerAsBytes, err := stub.GetState(talent marker_id)
         if err != nil {
-            return shim.Error("Failed to get marble")
+            return shim.Error("Failed to get talent marker")
         }
-        res := Marble{}
-        json.Unmarshal(marbleAsBytes, &res)           //un stringify it aka JSON.parse()
+        res := talent marker{}
+        json.Unmarshal(talent markerAsBytes, &res)           //un stringify it aka JSON.parse()
 
         // check authorizing company
         if res.Owner.Company != authed_by_company{
             return shim.Error("The company '" + authed_by_company + "' cannot authorize transfers for '" + res.Owner.Company + "'.")
         }
 
-        // transfer the marble
+        // transfer the talent marker
         res.Owner.Id = new_owner_id                   //change the owner
         res.Owner.Username = owner.Username
         res.Owner.Company = owner.Company
         jsonAsBytes, _ := json.Marshal(res)           //convert to array of bytes
-        err = stub.PutState(args[0], jsonAsBytes)     //rewrite the marble with id as key
+        err = stub.PutState(args[0], jsonAsBytes)     //rewrite the talent marker with id as key
         if err != nil {
             return shim.Error(err.Error())
         }
@@ -373,13 +361,13 @@ __/chaincode/write_ledger.go__
     }
 ```
 
-This `set_owner()` function will change the owner of a particular marble. 
+This `set_owner()` function will change the owner of a particular talent marker. 
 It takes in an array of strings input argument and returns `nil` if successful. 
-Within the array the first index should have the id of the marble which is also the key in the key/value pair. 
-We first need to retrieve the current marble struct by using this id. 
-This is done with `stub.GetState(marble_id)` and then unmarshal it into a marble structure with `json.Unmarshal(marbleAsBytes, &res)`. 
-From there we can index into the structure with `res.Owner.Id` and overwrite the marble's owner with the new owners Id. 
-Next we Marshal the structure back up so that we can use `stub.PutState()` to overwrite the marble with its new attributes. 
+Within the array the first index should have the id of the talent marker which is also the key in the key/value pair. 
+We first need to retrieve the current talent marker struct by using this id. 
+This is done with `stub.GetState(talent marker_id)` and then unmarshal it into a talent marker structure with `json.Unmarshal(talent markerAsBytes, &res)`. 
+From there we can index into the structure with `res.Owner.Id` and overwrite the talent marker's owner with the new owners Id. 
+Next we Marshal the structure back up so that we can use `stub.PutState()` to overwrite the talent marker with its new attributes. 
 
 Let’s take 1 step up and look at how this chaincode was called from our node.js app. 
 
@@ -396,39 +384,39 @@ __/utils/websocket_server_side.js__
             endorsed_hook: endorse_hook,
             ordered_hook: orderer_hook
         };
-        if (marbles_lib === null) {
-            logger.error('marbles lib is null...');             //can't run in this state
+        if (Talent-Exchange_lib === null) {
+            logger.error('Talent-Exchange lib is null...');             //can't run in this state
             return;
         }
 
-        // create a new marble
+        // create a new talent marker
         if (data.type == 'create') {
-            logger.info('[ws] create marbles req');
+            logger.info('[ws] create Talent-Exchange req');
             options.args = {
                 color: data.color,
                 size: data.size,
-                marble_owner: data.username,
+                talent marker_owner: data.username,
                 owners_company: data.company,
                 owner_id: data.owner_id,
-                auth_company: process.env.marble_company,
+                auth_company: process.env.talent marker_company,
             };
 
-            marbles_lib.create_a_marble(options, function (err, resp) {
+            Talent-Exchange_lib.create_a_talent marker(options, function (err, resp) {
                 if (err != null) send_err(err, data);
                 else options.ws.send(JSON.stringify({ msg: 'tx_step', state: 'finished' }));
             });
         }
 
-        // transfer a marble
-        else if (data.type == 'transfer_marble') {
+        // transfer a talent marker
+        else if (data.type == 'transfer_talent marker') {
             logger.info('[ws] transferring req');
             options.args = {
-                marble_id: data.id,
+                talent marker_id: data.id,
                 owner_id: data.owner_id,
-                auth_company: process.env.marble_company
+                auth_company: process.env.talent marker_company
             };
 
-            marbles_lib.set_marble_owner(options, function (err, resp) {
+            Talent-Exchange_lib.set_talent marker_owner(options, function (err, resp) {
                 if (err != null) send_err(err, data);
                 else options.ws.send(JSON.stringify({ msg: 'tx_step', state: 'finished' }));
             });
@@ -438,21 +426,21 @@ __/utils/websocket_server_side.js__
 
 This snippet of `process_msg()` receives all websocket messages (code found in app.js). 
 It will detect what type of ws (websocket) message was sent. 
-In our case, it should detect a `transfer_marble` type. 
-Looking at that code we can see it will setup an `options` variable and then kick off `marbles_lib.set_marble_owner()`. 
+In our case, it should detect a `transfer_talent marker` type. 
+Looking at that code we can see it will setup an `options` variable and then kick off `Talent-Exchange_lib.set_talent marker_owner()`. 
 This is the function that will tell the SDK to build the proposal and process the transfer action. 
 
 Next let’s look at that function. 
 
-__/utils/marbles_cc_lib.js__
+__/utils/Talent-Exchange_cc_lib.js__
 
 ```js
     //-------------------------------------------------------------------
-    // Set Marble Owner 
+    // Set talent marker Owner 
     //-------------------------------------------------------------------
-    marbles_chaincode.set_marble_owner = function (options, cb) {
+    Talent-Exchange_chaincode.set_talent marker_owner = function (options, cb) {
         console.log('');
-        logger.info('Setting marble owner...');
+        logger.info('Setting talent marker owner...');
 
         var opts = {
             peer_urls: g_options.peer_urls,
@@ -465,7 +453,7 @@ __/utils/marbles_cc_lib.js__
             ordered_hook: options.ordered_hook,
             cc_function: 'set_owner',
             cc_args: [
-                options.args.marble_id,
+                options.args.talent marker_id,
                 options.args.owner_id,
                 options.args.auth_company
             ],
@@ -475,7 +463,7 @@ __/utils/marbles_cc_lib.js__
         ...
 ```
 
-The the `set_marble_owner()` function is listed above. 
+The the `set_talent marker_owner()` function is listed above. 
 The important parts are that it is setting the proposal's invocation function name to "set_owner" with the line `fcn: 'set_owner'`. 
 Note that the peer and orderer URLs have already been set when we enrolled the admin. 
 By default the SDK will send this transaction to all peers that have been added with `channel.addPeer`. 
@@ -487,24 +475,24 @@ Now let’s look 1 more step up to how we sent this websocket message from the U
 __/public/js/ui_building.js__
 
 ```js
-    $('.innerMarbleWrap').droppable({drop:
+    $('.innertalent markerWrap').droppable({drop:
         function( event, ui ) {
-            var marble_id = $(ui.draggable).attr('id');
+            var talent marker_id = $(ui.draggable).attr('id');
 
-            //  ------------ Delete Marble ------------ //
+            //  ------------ Delete talent marker ------------ //
             if($(event.target).attr('id') === 'trashbin'){
                 // [removed code for brevity]
             }
 
-            //  ------------ Transfer Marble ------------ //
+            //  ------------ Transfer talent marker ------------ //
             else{
                 var dragged_owner_id = $(ui.draggable).attr('owner_id');
-                var dropped_owner_id = $(event.target).parents('.marblesWrap').attr('owner_id');
+                var dropped_owner_id = $(event.target).parents('.Talent-ExchangeWrap').attr('owner_id');
 
-                console.log('dropped a marble', dragged_owner_id, dropped_owner_id);
+                console.log('dropped a talent marker', dragged_owner_id, dropped_owner_id);
                 if (dragged_owner_id != dropped_owner_id) {
                 $(ui.draggable).addClass('invalid bounce');
-                    transfer_marble(marble_id, dropped_owner_id);
+                    transfer_talent marker(talent marker_id, dropped_owner_id);
                     return true;
                 }
             }
@@ -513,41 +501,41 @@ __/public/js/ui_building.js__
 
     ...
 
-    function transfer_marble(marbleName, to_username, to_company){
+    function transfer_talent marker(talent markerName, to_username, to_company){
         show_tx_step({ state: 'building_proposal' }, function () {
             var obj = {
-                type: 'transfer_marble',
-                id: marbleId,
+                type: 'transfer_talent marker',
+                id: talent markerId,
                 owner_id: to_owner_id,
                 v: 1
             };
-            console.log(wsTxt + ' sending transfer marble msg', obj);
+            console.log(wsTxt + ' sending transfer talent marker msg', obj);
             ws.send(JSON.stringify(obj));
             refreshHomePanel();
         });
     }
 ```
 
-In the first section referencing `$('.innerMarbleWrap')` you can see we used jQuery and jQuery-UI to implement the drag and drop functionality. 
+In the first section referencing `$('.innertalent markerWrap')` you can see we used jQuery and jQuery-UI to implement the drag and drop functionality. 
 With this code we get a droppable event trigger. 
-Much of the code is spent parsing for the details of the marble that was dropped and the user it was dropped into. 
+Much of the code is spent parsing for the details of the talent marker that was dropped and the user it was dropped into. 
 
-When the event fires we first check to see if this marble actually moved owners, or if it was just picked up and dropped back down. 
-If its owner has changed we go off to the `transfer_marble()` function. 
+When the event fires we first check to see if this talent marker actually moved owners, or if it was just picked up and dropped back down. 
+If its owner has changed we go off to the `transfer_talent marker()` function. 
 This function creates a JSON message with all the needed data and uses our websocket to send it with `ws.send()`. 
 
-The last piece of the puzzle is how Marbles realize the transfer is complete. 
-Well, marbles will periodically check on all the marbles and compares it to the last known state. 
-If there is a difference it will broadcast the new marble state to all connected JS clients. 
-The clients will receive this websocket message and redraw the marbles. 
+The last piece of the puzzle is how Talent-Exchange realize the transfer is complete. 
+Well, Talent-Exchange will periodically check on all the Talent-Exchange and compares it to the last known state. 
+If there is a difference it will broadcast the new talent marker state to all connected JS clients. 
+The clients will receive this websocket message and redraw the Talent-Exchange. 
 
 Now you know the whole flow. 
-The admin moved the marble, JS detected the drag/drop, client sends a websocket message, marbles receives the websocket message, sdk builds/sends a proposal, peer endorses the proposal, sdk sends the proposal for ordering, the orderer orders and sends a block to peer, our peer commits the block, marbles node code gets new marble status periodically, sends marble websocket message to client, and finally the client redraws the marble in its new home.
+The admin moved the talent marker, JS detected the drag/drop, client sends a websocket message, Talent-Exchange receives the websocket message, sdk builds/sends a proposal, peer endorses the proposal, sdk sends the proposal for ordering, the orderer orders and sends a block to peer, our peer commits the block, Talent-Exchange node code gets new talent marker status periodically, sends talent marker websocket message to client, and finally the client redraws the talent marker in its new home.
 
-That’s it! Hope you had fun transferring marbles. 
+That’s it! Hope you had fun transferring Talent-Exchange. 
 
-# Marbles FAQs
-Do you have questions about _why_ something in marbles is the way it is?  Or _how_ to do something? Check out the [FAQ](./docs/faq.md) .
+# Talent-Exchange FAQs
+Do you have questions about _why_ something in Talent-Exchange is the way it is?  Or _how_ to do something? Check out the [FAQ](./docs/faq.md) .
 
 # Feedback
 I'm very interested in your feedback. 
@@ -563,7 +551,7 @@ Specifically:
 - Was something particularly painful?
 - Did it make you have an existential crisis and you are suddenly unsure of what it means to be, you?
 
-Use the [GitHub Issues](https://github.com/IBM-Blockchain/marbles/issues) section to communicate any improvements/bugs and pain points!
+Use the [GitHub Issues](https://github.com/IBM-Blockchain/Talent-Exchange/issues) section to communicate any improvements/bugs and pain points!
 
 # Contribute
 If you want to help improve the demo check out the [contributing guide](./CONTRIBUTING.md)
