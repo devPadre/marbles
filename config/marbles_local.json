@@ -2,13 +2,11 @@
     "cred_filename": "blockchain_creds_local.json",
     "use_events": true,
     "keep_alive_secs": 120,
-    "company": "Veteran Talent Exchange",
+    "company": "Security Clearance Talent Exchange",
     "usernames": [
-        "talent-registry",
-        "army",
-        "company-a",
-        "university-a",
-        "navy"
+        "Technology",
+        "Cyber Security",
+	"Intelligence"
     ],
     "port": 3001
 }
