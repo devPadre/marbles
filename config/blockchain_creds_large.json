@@ -5,7 +5,7 @@
     "description": "Connection Profile for an Hyperledger Fabric network on a local machine",
     "version": "1.0.0",
     "client": {
-        "organization": "Org2MSP",
+        "organization": "Org1MSP",
         "credentialStore": {
             "path": "./crypto/prebaked"
         }
@@ -16,7 +16,7 @@
                 "fabric-orderer"
             ],
             "peers": {
-                "fabric-peer-org2": {
+                "fabric-peer-org1": {
                     "endorsingPeer": true,
                     "chaincodeQuery": true,
                     "ledgerQuery": true,
@@ -30,8 +30,8 @@
         }
     },
     "organizations": {
-        "Org2MSP": {
-            "mspid": "Org2MSP",
+        "Org1MSP": {
+            "mspid": "Org1MSP",
             "peers": [
                 "fabric-peer-org1"
             ],
@@ -42,7 +42,7 @@
                 "path": "./crypto/prebaked/cd96d5260ad4757551ed4a5a991e62130f8008a0bf996e4e4b84cd097a747fec-priv"
             },
             "signedCert": {
-                "path": "./crypto/prebaked/PeerAdmin1Cert.pem"
+                "path": "./crypto/prebaked/PeerAdminCert.pem"
             }
         }
     },
@@ -65,7 +65,7 @@
             },
             "registrar": [
                 {
-                    "enrollId": "PeerAdmin1",
+                    "enrollId": "PeerAdmin",
                     "enrollSecret": "-"
                 }
             ],
