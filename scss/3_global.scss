@@ -23,10 +23,9 @@ $auditSize: 333px;
 
 /*Main Layout*/
 #navPanel{
-	display: flex;
 	height:60px;
-	flex-direction: row;
-	align-items: center;
+	// flex-direction: row;
+	// align-items: center;
 	line-height: 60px;
 	width: width;
 	background: $acc_color3;
@@ -64,8 +63,8 @@ $auditSize: 333px;
 	align-content: center;
 	z-index:4;
 	font-size: 2rem;
-	flex-direction: row;
-	align-items: stretch;
+	// flex-direction: row;
+	// align-items: stretch;
 }
 #logoIcon{
 	display:inline-block;
@@ -194,8 +193,17 @@ $auditSize: 333px;
 .floatRight{
 	float: right;
 }
+
+/* Style the box wrap below */
 .ownerWrap{
 	padding: 20px;
+	display: -webkit-flex; /* Safari */
+	-webkit-flex-wrap: wrap; /* Safari 6.1+ */
+	-webkit-align-items: center;
+    display: flex;   
+    flex-wrap: wrap;
+	align-items: center;
+	
 }
 .companyNameWrap{
 	border-bottom: 1px $acc_color1-5 solid;
@@ -207,7 +215,6 @@ $auditSize: 333px;
 }
 #toolbarWrap{
 	margin: 0; 
-	display: -webkit-flex;
 	align-items: center;
 	text-align:left;
 	position: relative;
@@ -258,7 +265,7 @@ $auditSize: 333px;
 }
 .bottomAlign{
 	position: absolute;
-	flex-direction: row;
+	// flex-direction: row;
 	padding-right: 5px;
 	bottom: 5px;
 
@@ -805,9 +812,7 @@ $marble_left: 0;
 
 // --------- Login/Logout ---------
 #whoAmI{
-	align-items: flex-end;
 	float: right;
-	position: fixed;
 	right:20px;
 	z-index:3;
 	top:0;
