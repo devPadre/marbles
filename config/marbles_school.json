@@ -1,0 +1,17 @@
+{
+    "cred_filename": "blockchain_creds_school.json",
+    "use_events": true,
+    "keep_alive_secs": 120,
+    "company": "University System",
+    "usernames": [
+        "Biology",
+        "Engineering",
+        "Technology",
+        "Education",
+        "Nursing",
+        "Trucking",
+        "Mechanic",
+        "Cybersecurity"
+    ],
+    "port": 3001
+}
