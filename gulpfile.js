@@ -42,6 +42,8 @@ gulp.task('default', ['watch-sass', 'watch-server', 'server']);
 gulp.task('marbles_tls', ['env_tls', 'watch-sass', 'watch-server', 'server']);		//run with command `gulp marbles_tls` for bluemix blockchain service
 gulp.task('marbles_local', ['env_local', 'watch-sass', 'watch-server', 'server']);	//run with command `gulp marbles_local` for a local network
 gulp.task('marbles_new', ['env_new', 'watch-sass', 'watch-server', 'server']);	//run with command `gulp marbles_new` for a new local network
+gulp.task('marbles_large', ['env_large', 'watch-sass', 'watch-server', 'server']);	//run with command `gulp marbles_new` for a new local network
+gulp.task('marbles_newer', ['env_newer', 'watch-sass', 'watch-server', 'server']);	//run with command `gulp marbles_new` for a new local network
 gulp.task('marbles_cs', ['env_cs', 'watch-sass', 'watch-server', 'server']);		//run with command `gulp marbles_cs` for bluemix container service
 gulp.task('marbles_dev', ['env_dev', 'watch-sass', 'watch-server', 'server']);		//run with command `gulp marbles_dev` if you are me
 gulp.task('marbles_dev2', ['env_dev2', 'watch-sass', 'watch-server', 'server']);	//run with command `gulp marbles_dev` if you are me
@@ -60,6 +62,16 @@ gulp.task('env_local', function () {
 // Local Fabric via Docker Compose
 gulp.task('env_new', function () {
 	env['creds_filename'] = 'marbles_new.json';
+});
+
+// Local Fabric via Docker Compose
+gulp.task('env_large', function () {
+	env['creds_filename'] = 'marbles_large.json';
+});
+
+// Local Fabric via Docker Compose
+gulp.task('env_newer', function () {
+	env['creds_filename'] = 'marbles_newer.json';
 });
 
 // Bluemix Container Service

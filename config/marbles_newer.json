@@ -1,0 +1,14 @@
+{
+    "cred_filename": "blockchain_creds_newer.json",
+    "use_events": true,
+    "keep_alive_secs": 120,
+    "company": "Security Clearance Exchange",
+    "usernames": [
+        "Secret",
+        "TopSecret",
+        "Confidential",
+        "SCI",
+        "Diplomatic"
+    ],
+    "port": 3001
+}
