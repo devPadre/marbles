@@ -66,10 +66,10 @@ input[type="submit"]:hover,input[type="button"]:hover, button:hover, button.acti
 }
 input[type="text"], input[type="password"], select{
 	padding:5px 10px; 
-	margin:5px; 
+	margin: 1px; 
 	color:$main_color;
 	border: 1px solid $acc_color2;
-	border-radius:5px;
+	border-radius:px;
 	background:$main_bg;
 	min-width:120px;
 	//font-family: monospace;
@@ -79,7 +79,7 @@ input[type="text"]:disabled, input[type="password"]:disabled, select:disabled{
 	color: $acc_color2;
 }
 input.longer{
-	min-width:333px;
+	min-width: 300px;
 }
 button:disabled{
 	cursor: default;

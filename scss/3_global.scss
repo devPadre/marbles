@@ -23,11 +23,14 @@ $auditSize: 333px;
 
 /*Main Layout*/
 #navPanel{
+	display: flex;
 	height:60px;
+	flex-direction: row;
+	align-items: center;
 	line-height: 60px;
-	width:100%;
+	width: width;
 	background: $acc_color3;
-	font-size: 15px;
+	font-size: 1.1rem;
 	color: $acc_color1-5;
 }
 
@@ -58,13 +61,18 @@ $auditSize: 333px;
 	display:inline-block;
 	font-weight: 600;
 	position: relative;
+	align-content: center;
 	z-index:4;
-	font-size: 24px;
+	font-size: 2rem;
+	flex-direction: row;
+	align-items: stretch;
 }
 #logoIcon{
 	display:inline-block;
+	flex-direction: row;
+	align-content: center;
 	vertical-align: middle;
-	height: 25px;
+	height: 2.5rem;
 	margin-right: 15px;
 	margin-left: 15px;
 }
@@ -148,7 +156,6 @@ $auditSize: 333px;
 
 // --------- Home ---------
 .marblesWrap{
-	display: inline-block;
 	min-width: 235px;
 	text-align: left;
 	color: $main_color;
@@ -164,6 +171,7 @@ $auditSize: 333px;
 .innerMarbleWrap{
 	min-height:100px;
 	padding-right: 10px;
+	padding-left: 10px;
 }
 .legend{
 	display:absolute;
@@ -199,6 +207,8 @@ $auditSize: 333px;
 }
 #toolbarWrap{
 	margin: 0; 
+	display: -webkit-flex;
+	align-items: center;
 	text-align:left;
 	position: relative;
 	height: 100px;
@@ -232,7 +242,7 @@ $auditSize: 333px;
 }
 #trashbin{
 	text-align: center;
-	padding: 5px 50px;
+	padding: 1px 10px;
 	border: 1px $acc_color2 dashed;
 	border-radius:3px;
 	vertical-align: top;
@@ -248,6 +258,8 @@ $auditSize: 333px;
 }
 .bottomAlign{
 	position: absolute;
+	flex-direction: row;
+	padding-right: 5px;
 	bottom: 5px;
 
 }
@@ -793,13 +805,14 @@ $marble_left: 0;
 
 // --------- Login/Logout ---------
 #whoAmI{
-	position: absolute;
+	align-items: flex-end;
+	float: right;
+	position: fixed;
 	right:20px;
 	z-index:3;
 	top:0;
 	color: $acc_color1;
 	cursor: pointer;
-	font-size: 13px;
 	transition: background-color 0.3s ease;
 	padding: 0 15px;
 }
@@ -824,7 +837,7 @@ $marble_left: 0;
 	border-radius: 10px;
 	width: 140px;
 	text-align: center;
-	font-size: 11px;
+	font-size: 1.2rem;
 	font-weight: bold;
 }
 .userLine{
