@@ -143,7 +143,7 @@ if (config_error) {
 } else {
 	broadcast_state('checklist', 'success');		//checklist step is done
 	console.log('\n');
-	logger.info('Using settings in ' + process.env.creds_filename + ' to see if we have launch marbles before...');
+	logger.info('Using settings in ' + process.env.creds_filename + ' to see if we have launched the exchange before...');
 
 	// --- Go Go Enrollment --- //
 	enroll_admin(1, function (e) {
@@ -165,7 +165,7 @@ if (config_error) {
 					} else {
 						console.log('\n');
 						logger.debug('Detected that we have launched successfully before');
-						logger.debug('Welcome back - Marbles is ready');
+						logger.debug('Welcome back - your Talent Exchange is ready');
 						logger.debug('Open your browser to http://' + host + ':' + port + ' and login as "admin"\n\n');
 					}
 				});
@@ -192,7 +192,7 @@ function detect_prev_startup(opts, cb) {
 			if (cb) cb(true);
 		} else {
 			if (find_missing_owners(resp)) {							//check if each user in the settings file has been created in the ledger
-				logger.info('We need to make marble owners');			//there are marble owners that do not exist!
+				logger.info('We need to make talent owners');			//there are marble owners that do not exist!
 				broadcast_state('register_owners', 'waiting');
 				if (cb) cb(true);
 			} else {
@@ -212,7 +212,7 @@ function find_missing_owners(resp) {
 
 	for (let x in user_base) {
 		let found = false;
-		logger.debug('Looking for marble owner:', user_base[x]);
+		logger.debug('Looking for talent owner:', user_base[x]);
 		for (let i in ledger.owners) {
 			if (user_base[x] === ledger.owners[i].username) {
 				found = true;
@@ -220,7 +220,7 @@ function find_missing_owners(resp) {
 			}
 		}
 		if (found === false) {
-			logger.debug('Did not find marble username:', user_base[x]);
+			logger.debug('Did not find talent username:', user_base[x]);
 			return true;
 		}
 	}
@@ -287,12 +287,12 @@ function enroll_admin(attempt, cb) {
 // Create marbles and marble owners, owners first
 function create_assets(build_marbles_users) {
 	build_marbles_users = misc.saferNames(build_marbles_users);
-	logger.info('Creating marble owners and marbles');
+	logger.info('Creating owners and talent');
 	var owners = [];
 
 	if (build_marbles_users && build_marbles_users.length > 0) {
 		async.each(build_marbles_users, function (username, owner_cb) {
-			logger.debug('- creating marble owner: ', username);
+			logger.debug('- creating talent owner: ', username);
 
 			// --- Create Each User --- //
 			create_owners(0, username, function (errCode, resp) {
@@ -301,7 +301,7 @@ function create_assets(build_marbles_users) {
 			});
 
 		}, function (err) {
-			logger.info('finished creating owners, now for marbles');
+			logger.info('finished owners, now for talent');
 			if (err == null) {
 
 				var marbles = [];
@@ -311,7 +311,7 @@ function create_assets(build_marbles_users) {
 						marbles.push(owners[i]);
 					}
 				}
-				logger.debug('prepared marbles obj', marbles.length, marbles);
+				logger.debug('prepared talent obj', marbles.length, marbles);
 
 				// --- Create Marbles--- //
 				setTimeout(function () {
@@ -328,7 +328,7 @@ function create_assets(build_marbles_users) {
 		});
 	}
 	else {
-		logger.debug('- there are no new marble owners to create');
+		logger.debug('- there are no new talent owners to create');
 		all_done();
 	}
 }
@@ -347,7 +347,7 @@ function create_owners(attempt, username, cb) {
 	marbles_lib.register_owner(options, function (e, resp) {
 		if (e != null) {
 			console.log('');
-			logger.error('error creating the marble owner', e, resp);
+			logger.error('error creating the owner', e, resp);
 			cb(e, resp);
 		}
 		else {
@@ -362,7 +362,7 @@ function create_marbles(owner_id, username, cb) {
 	const channel = helper.getChannelId();
 	const first_peer = helper.getFirstPeerName(channel);
 	console.log('');
-	logger.debug('[startup] going to create marble:', randOptions);
+	logger.debug('[startup] going to create talent:', randOptions);
 	var options = {
 		chaincode_id: helper.getChaincodeId(),
 		peer_urls: [helper.getPeersUrl(first_peer)],
