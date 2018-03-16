@@ -1,0 +1,14 @@
+{
+    "cred_filename": "blockchain_creds_new.json",
+    "use_events": true,
+    "keep_alive_secs": 120,
+    "company": "Private Company",
+    "usernames": [
+        "Cybersecurity",
+        "Engineering",
+        "Logistics",
+        "Executive",
+        "Apprenticeship"
+    ],
+    "port": 3001
+}

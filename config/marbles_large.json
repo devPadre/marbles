@@ -1,0 +1,14 @@
+{
+    "cred_filename": "blockchain_creds_large.json",
+    "use_events": true,
+    "keep_alive_secs": 120,
+    "company": "Global Company",
+    "usernames": [
+        "Chicago",
+        "London",
+        "Europe",
+        "Perth",
+        "Cairo"
+    ],
+    "port": 3001
+}
