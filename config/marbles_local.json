@@ -4,6 +4,14 @@
     "keep_alive_secs": 120,
     "company": "Veteran Talent Exchange",
     "usernames": [
+	"Infantry11b",
+	"Corpsman",
+	"Yeoman",
+	"Engineer12b",
+	"Information25b",
+	"SpecialOperations",
+	"Transitioning",
+	"Veteran"
     ],
     "port": 3001
 }
